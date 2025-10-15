@@ -23,5 +23,4 @@ public class StringCalculatorTest {
         //then
         assertEquals(0, result);
     }
-
 }
