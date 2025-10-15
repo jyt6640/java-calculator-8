@@ -76,9 +76,9 @@ public class StringCalculatorTest {
         assertEquals(6, result);
     }
 
-    @DisplayName("커스텀 구분자 형식 확인")
+    @DisplayName("커스텀 구분자 추출")
     @Test
-    void 커스텀_구분자_형식_확인() {
+    void 커스텀_구분자_추출() {
         //given
         String input = "//;\n1;2;3";
 
