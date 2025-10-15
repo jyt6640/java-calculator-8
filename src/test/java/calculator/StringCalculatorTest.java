@@ -83,9 +83,21 @@ public class StringCalculatorTest {
         String input = "//;\n1;2;3";
 
         //when
-        String result = StringCalculator.customDelimiter(input);
+        String result = StringCalculator.extractCustomDelimiter(input);
 
         //then
         assertEquals(";", result);
+    }
+
+    @DisplayName("커스텀 구분자 형식 뒤 문자열 추출")
+    @Test
+    void 커스텀_구분자_형식_뒤_문자열_추출() {
+        //given
+        String input = "//;\n1;2;3";
+
+        //when
+        String result = StringCalculator.extractNumbersPart(input);
+
+        assertEquals("1;2;3", result);
     }
 }
