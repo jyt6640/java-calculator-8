@@ -75,4 +75,17 @@ public class StringCalculatorTest {
         //then
         assertEquals(6, result);
     }
+
+    @DisplayName("커스텀 구분자 형식 확인")
+    @Test
+    void 커스텀_구분자_형식_확인() {
+        //given
+        String input = "//;\n1;2;3";
+
+        //when
+        String result = StringCalculator.customDelimiter(input);
+
+        //then
+        assertEquals(";", result);
+    }
 }
