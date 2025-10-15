@@ -36,4 +36,17 @@ public class StringCalculatorTest {
         //then
         assertEquals(1, result);
     }
+
+    @DisplayName("쉼표 구분자로 여러 숫자의 합 반환")
+    @Test
+    void 쉼표_구분자로_여러_숫자의_합_반환() {
+        //given
+        String input = "1,2,3";
+
+        //when
+        int result = StringCalculator.calculate(input);
+
+        //then
+        assertEquals(6, result);
+    }
 }
