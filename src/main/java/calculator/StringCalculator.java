@@ -7,7 +7,9 @@ public class StringCalculator {
     public static int calculate(String input) {
         if (input == "") return 0;
 
-        String[] tokens = input.split(",");
+        String delimiters = ",|:";
+
+        String[] tokens = input.split(delimiters);
         List<Integer> numbers = new ArrayList<>();
 
 
