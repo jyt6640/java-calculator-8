@@ -1,12 +1,26 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
     public static int calculate(String input) {
         if (input == "") return 0;
 
-        int result = Integer.parseInt(input);
+        String[] tokens = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
 
-        return result;
+
+        for (String token : tokens) {
+            numbers.add(Integer.parseInt(token));
+        }
+
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+
+        return sum;
     }
 
 }
