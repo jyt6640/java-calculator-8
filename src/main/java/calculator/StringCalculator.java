@@ -9,10 +9,18 @@ public class StringCalculator {
 
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("^//(.+?)\\n");
 
-    public static String customDelimiter(String input) {
+    public static String extractCustomDelimiter(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (matcher.find()) {
             return matcher.group(1);
+        }
+        return null;
+    }
+
+    public static String extractNumbersPart(String input) {
+        Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
+        if (matcher.find()) {
+            return input.substring(matcher.end());
         }
         return null;
     }
