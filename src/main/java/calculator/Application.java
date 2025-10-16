@@ -7,12 +7,12 @@ public class Application {
         String input = InputView.readInput();
         try {
             int result = StringCalculator.calculate(input);
-            System.out.println("결과 : " + result);
+            OutputView.printResult(result);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] : " + e.getMessage());
+            OutputView.printError(e.getMessage());
             throw e;
         } catch (Exception e) {
-            System.out.println("[ERROR] : 알 수 없는 오류가 발생했습니다.");
+            OutputView.printError(e.getMessage());
         } finally {
             Console.close();
         }
