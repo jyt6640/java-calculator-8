@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
+    //------------------------------기능 테스트------------------------------
     @DisplayName("빈 문자열은 0 반환")
     @Test
     void 빈_문자열은_0을_반환() {
@@ -80,7 +81,7 @@ public class StringCalculatorTest {
     @Test
     void 커스텀_구분자_추출() {
         //given
-        String input = "//;\n1;2;3";
+        String input = "//;\\n1;2;3";
 
         //when
         String result = StringCalculator.extractCustomDelimiter(input);
@@ -93,7 +94,7 @@ public class StringCalculatorTest {
     @Test
     void 커스텀_구분자_형식_뒤_문자열_추출() {
         //given
-        String input = "//;\n1;2;3";
+        String input = "//;\\n1;2;3";
 
         //when
         String result = StringCalculator.extractNumbersPart(input);
@@ -106,7 +107,7 @@ public class StringCalculatorTest {
     @Test
     void 커스텀_구분자로_계산() {
         //given
-        String input = "//;\n1;2;3";
+        String input = "//;\\n1;2;3";
 
         //when
         int result = StringCalculator.calculate(input);
