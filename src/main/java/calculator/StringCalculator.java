@@ -28,9 +28,22 @@ public class StringCalculator {
     public static int calculate(String input) {
         if (input.isEmpty()) return 0;
 
-        String delimiters = "[,:]";
+        String delimiters = ",:";
 
-        String[] tokens = input.split(delimiters);
+        if (input.startsWith("//")) {
+            String customDelimiter = extractCustomDelimiter(input);
+            String numbersPart = extractNumbersPart(input);
+
+            String[] tokens = numbersPart.split("["+ delimiters + customDelimiter + "]");
+            int sum = 0;
+            for (String token : tokens) {
+                sum += Integer.parseInt(token);
+            }
+
+            return sum;
+        }
+
+        String[] tokens = input.split("[" + delimiters + "]");
         List<Integer> numbers = new ArrayList<>();
 
 
