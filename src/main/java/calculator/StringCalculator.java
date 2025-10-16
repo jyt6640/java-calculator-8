@@ -32,6 +32,20 @@ public class StringCalculator {
         throw new IllegalArgumentException("커스텀 구분자 형식이 올바르지 않습니다.");
     }
 
+    public static int parseAndValidateNumber(String token) {
+        try {
+            int number = Integer.parseInt(token);
+
+            if (number < 0) {
+                throw new IllegalArgumentException("음수는 허용되지 않습니다.");
+            }
+
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자가 아닌 값이 포함되어 있습니다.");
+        }
+    }
+
     public static int calculate(String input) {
         if (input.isEmpty()) return 0;
 
@@ -48,7 +62,13 @@ public class StringCalculator {
 
         int sum = 0;
         for (String token : tokens) {
-            sum += Integer.parseInt(token);
+            if (token.isEmpty()) {
+                continue;
+            }
+
+            int number = parseAndValidateNumber(token);
+
+            sum += number;
         }
 
         return sum;

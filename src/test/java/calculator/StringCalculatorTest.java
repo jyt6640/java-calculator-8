@@ -72,7 +72,7 @@ public class StringCalculatorTest {
         //when
         int result = StringCalculator.calculate(input);
 
-        //then
+        //then\
         assertEquals(6, result);
     }
 

@@ -11,6 +11,7 @@ public class Application {
             System.out.println("결과 : " + result);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] : " + e.getMessage());
+            throw e;
         } catch (Exception e) {
             System.out.println("[ERROR] : 알 수 없는 오류가 발생했습니다.");
         } finally {
