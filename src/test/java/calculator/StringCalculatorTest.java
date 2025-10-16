@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
+    private StringCalculator calculator;
+    private DelimiiterParser delimiterParser;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new StringCalculator();
+        delimiterParser = new DelimiiterParser();
+    }
+
     //------------------------------기능 테스트------------------------------
     @DisplayName("빈 문자열은 0 반환")
     @Test
@@ -18,7 +28,7 @@ public class StringCalculatorTest {
         String input = "";
 
         //when
-        int result = StringCalculator.calculate(input);
+        int result = calculator.calculate(input);
 
         //then
         assertEquals(0, result);
@@ -31,7 +41,7 @@ public class StringCalculatorTest {
         String input = "1";
 
         //when
-        int result = StringCalculator.calculate(input);
+        int result = calculator.calculate(input);
 
         //then
         assertEquals(1, result);
@@ -44,7 +54,7 @@ public class StringCalculatorTest {
         String input = "1,2,3";
 
         //when
-        int result = StringCalculator.calculate(input);
+        int result = calculator.calculate(input);
 
         //then
         assertEquals(6, result);
@@ -57,7 +67,7 @@ public class StringCalculatorTest {
         String input = "1:2:3";
 
         //when
-        int result = StringCalculator.calculate(input);
+        int result = calculator.calculate(input);
 
         //then
         assertEquals(6, result);
@@ -70,7 +80,7 @@ public class StringCalculatorTest {
         String input = "1,2:3";
 
         //when
-        int result = StringCalculator.calculate(input);
+        int result = calculator.calculate(input);
 
         //then\
         assertEquals(6, result);
@@ -83,7 +93,7 @@ public class StringCalculatorTest {
         String input = "//;\\n1;2;3";
 
         //when
-        String result = StringCalculator.extractCustomDelimiter(input);
+        String result = delimiterParser.extractCustomDelimiter(input);
 
         //then
         assertEquals(";", result);
@@ -96,7 +106,7 @@ public class StringCalculatorTest {
         String input = "//;\\n1;2;3";
 
         //when
-        String result = StringCalculator.extractNumbersPart(input);
+        String result = delimiterParser.extractNumbersPart(input);
 
         //then
         assertEquals("1;2;3", result);
@@ -109,7 +119,7 @@ public class StringCalculatorTest {
         String input = "//;\\n1;2;3";
 
         //when
-        int result = StringCalculator.calculate(input);
+        int result = calculator.calculate(input);
 
         //then
         assertEquals(6, result);
@@ -123,7 +133,7 @@ public class StringCalculatorTest {
         String input = "-1,2,3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> StringCalculator.calculate(input));
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate(input));
     }
 
     @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
@@ -133,7 +143,7 @@ public class StringCalculatorTest {
         String input = "1,a,3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> StringCalculator.calculate(input));
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate(input));
     }
 
     @DisplayName("커스텀 구분자 누락 시 예외 발생")
@@ -143,7 +153,7 @@ public class StringCalculatorTest {
         String input = "//\n1;2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> StringCalculator.extractCustomDelimiter(input));
+        assertThrows(IllegalArgumentException.class, () -> delimiterParser.extractCustomDelimiter(input));
     }
 
     @DisplayName("개행 표식 누락 시 예외 발생")
@@ -153,6 +163,6 @@ public class StringCalculatorTest {
         String input = "//;1;2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> StringCalculator.extractNumbersPart(input));
+        assertThrows(IllegalArgumentException.class, () -> delimiterParser.extractNumbersPart(input));
     }
 }
