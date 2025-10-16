@@ -29,31 +29,19 @@ public class StringCalculator {
         if (input.isEmpty()) return 0;
 
         String delimiters = ",:";
+        String numbersPart = input;
 
         if (input.startsWith("//")) {
             String customDelimiter = extractCustomDelimiter(input);
-            String numbersPart = extractNumbersPart(input);
-
-            String[] tokens = numbersPart.split("["+ delimiters + customDelimiter + "]");
-            int sum = 0;
-            for (String token : tokens) {
-                sum += Integer.parseInt(token);
-            }
-
-            return sum;
+            numbersPart = extractNumbersPart(input);
+            delimiters += customDelimiter;
         }
 
-        String[] tokens = input.split("[" + delimiters + "]");
-        List<Integer> numbers = new ArrayList<>();
-
-
-        for (String token : tokens) {
-            numbers.add(Integer.parseInt(token));
-        }
+        String[] tokens = numbersPart.split("[" + delimiters + "]");
 
         int sum = 0;
-        for (int number : numbers) {
-            sum += number;
+        for (String token : tokens) {
+            sum += Integer.parseInt(token);
         }
 
         return sum;
