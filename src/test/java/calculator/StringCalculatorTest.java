@@ -98,6 +98,20 @@ public class StringCalculatorTest {
         //when
         String result = StringCalculator.extractNumbersPart(input);
 
+        //then
         assertEquals("1;2;3", result);
+    }
+
+    @DisplayName("커스텀 구분자로 계산")
+    @Test
+    void 커스텀_구분자로_계산() {
+        //given
+        String input = "//;\n1;2;3";
+
+        //when
+        int result = StringCalculator.calculate(input);
+
+        //then
+        assertEquals(6, result);
     }
 }
