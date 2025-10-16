@@ -10,9 +10,17 @@ public class StringCalculator {
     public static String extractCustomDelimiter(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (matcher.find()) {
-            return matcher.group(1);
+            String delimiter = matcher.group(1);
+
+            if (delimiter.isEmpty()) {
+                throw new IllegalArgumentException("커스텀 구분자가 비어있습니다.");
+            }
+
+            return delimiter;
         }
-        return null;
+
+        //개행 문자 누락
+        throw new IllegalArgumentException("커스텀 구분자 형식이 올바르지 않습니다.");
     }
 
     public static String extractNumbersPart(String input) {
@@ -20,7 +28,8 @@ public class StringCalculator {
         if (matcher.find()) {
             return input.substring(matcher.end());
         }
-        return null;
+
+        throw new IllegalArgumentException("커스텀 구분자 형식이 올바르지 않습니다.");
     }
 
     public static int calculate(String input) {
