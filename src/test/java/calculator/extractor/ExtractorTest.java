@@ -50,9 +50,9 @@ public class ExtractorTest {
         String input = "";
 
         //when
-        int result = numberPartExtractor.emptyNumberPartExtractor(input);
+        String result = numberPartExtractor.emptyNumberInput(input);
 
         //then
-        assertEquals(0, result);
+        assertEquals("0", result);
     }
 }

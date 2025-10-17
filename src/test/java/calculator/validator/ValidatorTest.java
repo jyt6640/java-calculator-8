@@ -2,29 +2,20 @@ package calculator.validator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ValidatorTest {
-    @DisplayName("음수 입력 예외 발생")
-    @Test
-    void 음수_입력_예외_발생() {
-        //given
-        String input = "-1,2,3";
+    private CustomDelimiterValidator customDelimiterValidator;
+    private NumberPartValidator numberPartValidator;
 
-        //when&then
-        assertThrows(IllegalArgumentException.class, () -> numberPartValidator.negativeNumberValidate(input));
-    }
-
-    @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
-    @Test
-    void 숫자가_아닌_값_입력_시_예외_발생() {
-        //given
-        String input = "1,a,3";
-
-        //when&then
-        assertThrows(IllegalArgumentException.class, () -> numberPartValidator.notANumberValidate(input));
+    @BeforeEach
+    public void setUp() {
+        customDelimiterValidator = new CustomDelimiterValidator();
+        numberPartValidator = new NumberPartValidator();
     }
 
     @DisplayName("커스텀 구분자 누락 시 예외 발생")
@@ -34,16 +25,49 @@ public class ValidatorTest {
         String input = "//\n1;2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> CustomDelimiterValidator.emptyCustomValidate(input));
+        assertThrows(IllegalArgumentException.class, () -> customDelimiterValidator.emptyCustomValidate(input));
     }
 
-    @DisplayName("개행 표식 누락 시 예외 발생")
+    @DisplayName("커스텀 구분자 형식 예외 발생")
     @Test
-    void 개행_표식_누락_시_예외_발생() {
+    void 커스텀_구분자_형식_예외_발생() {
         //given
         String input = "//;1;2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> CustomDelimiterValidator.invalidCustomDelimiterFormatValidate(input));
+        assertThrows(IllegalArgumentException.class, () -> customDelimiterValidator.validateCustomDelimiterFormat(input));
+    }
+
+    @DisplayName("커스텀 구분자 접두사 문자 확인")
+    @Test
+    void 커스텀_구분자_접두사_문자_확인() {
+        //given
+        String input = "//;1;2;3";
+
+        //when
+        customDelimiterValidator.hasCustomDelimiter(input);
+
+        //then
+        assertTrue(true);
+    }
+
+    @DisplayName("음수 입력 예외 발생")
+    @Test
+    void 음수_입력_예외_발생() {
+        //given
+        String input[] = {"-1","2","3"};
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> numberPartValidator.hasNegativeNumberValidate(input));
+    }
+
+    @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
+    @Test
+    void 숫자가_아닌_값_입력_시_예외_발생() {
+        //given
+        String input[] = {"1","a","3"};
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> numberPartValidator.containsNonDigit(input));
     }
 }
