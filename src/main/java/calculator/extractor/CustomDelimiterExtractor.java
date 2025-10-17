@@ -10,6 +10,9 @@ public class CustomDelimiterExtractor {
 
     public String extractCustomDelimiter(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
-        return matcher.group(1);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
     }
 }

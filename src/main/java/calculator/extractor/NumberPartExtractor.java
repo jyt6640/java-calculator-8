@@ -2,7 +2,6 @@ package calculator.extractor;
 
 import static calculator.constant.Patterns.CUSTOM_DELIMITER;
 
-import calculator.constant.ErrorMessage;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,7 +10,10 @@ public class NumberPartExtractor {
 
     public String extractNumbersPart(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
-        return input.substring(matcher.end());
+        if (matcher.find()) {
+            return input.substring(matcher.end());
+        }
+        return null;
     }
 
     public String emptyNumberInput(String input) {
