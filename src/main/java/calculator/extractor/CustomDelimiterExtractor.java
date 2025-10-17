@@ -6,7 +6,7 @@ import calculator.constant.ErrorMessage;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DelimiiterParser {
+public class InputParser {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER);
 
     public String extractCustomDelimiter(String input) {
