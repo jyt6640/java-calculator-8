@@ -14,15 +14,14 @@ public class CustomDelimiterValidator {
         return input.startsWith(CUSTOM_PREFIX);
     }
 
-    public boolean validateCustomDelimiterFormat(String input) {
+    public void validateCustomDelimiterFormat(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if(!matcher.find()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
         }
-        return true;
     }
 
-    public boolean emptyCustomValidate(String input) {
+    public void emptyCustomDelimiterValidate(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (!matcher.find()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
@@ -32,7 +31,5 @@ public class CustomDelimiterValidator {
         if (delimiter == null || delimiter.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_CUSTOM_DELIMITER.getMessage());
         }
-
-        return true;
     }
 }

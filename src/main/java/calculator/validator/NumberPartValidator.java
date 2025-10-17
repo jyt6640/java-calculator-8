@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class NumberPartValidator {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER);
 
-    public boolean hasNegativeNumberValidate(String[] tokens) {
+    public void hasNegativeNumberValidate(String[] tokens) {
         for (String token : tokens) {
             int number = Integer.parseInt(token);
 
@@ -19,16 +19,14 @@ public class NumberPartValidator {
                 throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER.getMessage());
             }
         }
-        return false;
     }
 
-    public boolean containsNonDigit(String[] tokens) {
+    public void containsNonDigit(String[] tokens) {
         for (String token : tokens) {
             if (!token.matches(ONLY_NUMBER)) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
             }
         }
-        return false;
     }
 
     public void validateWithoutCustomDelimiter(String input) {
