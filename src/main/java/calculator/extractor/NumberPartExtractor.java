@@ -17,4 +17,11 @@ public class NumberPartExtractor {
 
         throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
     }
+
+    public String emptyNumberInput(String input) {
+        if (input.isEmpty()) {
+            return "0";
+        }
+        return input;
+    }
 }

@@ -2,7 +2,7 @@ package calculator.validator;
 
 import calculator.constant.ErrorMessage;
 
-public class NumberValidator {
+public class NumberPartValidator {
     public int parseAndValidateNumber(String token) {
         try {
             int number = Integer.parseInt(token);
