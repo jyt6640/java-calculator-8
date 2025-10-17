@@ -1,4 +1,4 @@
-package calculator;
+package calculator.domain;
 
 public class StringCalculator {
     private final DelimiiterParser delimiterParser = new DelimiiterParser();

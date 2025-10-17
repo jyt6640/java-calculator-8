@@ -1,22 +1,13 @@
 package calculator;
 
+import calculator.controller.CalculatorController;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        StringCalculator calculator = new StringCalculator();
-
-        String input = inputView.readInput();
         try {
-            int result = calculator.calculate(input);
-            outputView.printResult(result);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            throw e;
-        } catch (Exception e) {
-            outputView.printError(e.getMessage());
+            CalculatorController controller = new CalculatorController();
+            controller.run();
         } finally {
             Console.close();
         }
