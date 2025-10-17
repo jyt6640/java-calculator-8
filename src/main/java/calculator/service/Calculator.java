@@ -1,6 +1,6 @@
 package calculator.service;
 
-import calculator.domain.NumberValidator;
+import calculator.validator.NumberValidator;
 
 public class Calculator {
 

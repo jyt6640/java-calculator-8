@@ -1,4 +1,4 @@
-package calculator.domain;
+package calculator.validator;
 
 import calculator.constant.ErrorMessage;
 

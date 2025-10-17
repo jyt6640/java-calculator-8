@@ -6,24 +6,15 @@ import calculator.constant.ErrorMessage;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CustomDelimiterExtractor {
+public class NumberPartExtractor {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER);
 
-    public String extractCustomDelimiter(String input) {
+    public String extractNumbersPart(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (matcher.find()) {
-            String customDelimiter = matcher.group(1);
-
-            if (customDelimiter.isEmpty()) {
-                throw new IllegalArgumentException(ErrorMessage.EMPTY_CUSTOM_DELIMITER.getMessage());
-            }
-
-            return customDelimiter;
+            return input.substring(matcher.end());
         }
 
-        //개행 문자 누락
         throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
     }
-
-
 }
