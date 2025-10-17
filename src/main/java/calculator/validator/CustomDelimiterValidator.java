@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class CustomDelimiterValidator {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER);
 
-    public boolean hasCustomDelimiter(String input) {
+    public boolean startCustomDelimiterPrefix(String input) {
         return input.startsWith(CUSTOM_PREFIX);
     }
 
