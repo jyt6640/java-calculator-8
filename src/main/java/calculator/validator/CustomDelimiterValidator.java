@@ -21,4 +21,18 @@ public class CustomDelimiterValidator {
         }
         return true;
     }
+
+    public boolean emptyCustomValidate(String input) {
+        Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
+        if (!matcher.find()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
+        }
+
+        String delimiter = matcher.group(1);
+        if (delimiter == null || delimiter.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_CUSTOM_DELIMITER.getMessage());
+        }
+
+        return true;
+    }
 }
