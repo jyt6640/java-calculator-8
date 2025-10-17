@@ -1,27 +1,18 @@
 package calculator.controller;
 
-import static calculator.constant.Delimiter.CUSTOM_PREFIX;
-import static calculator.constant.Delimiter.DEFAULT_DELIMITER;
-
-import calculator.extractor.CustomDelimiterExtractor;
-import calculator.extractor.NumberPartExtractor;
+import calculator.service.CalculatorService;
 import calculator.view.InputView;
 import calculator.view.OutputView;
-import calculator.service.Calculator;
 
 public class CalculatorController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final Calculator calculator;
-    private final CustomDelimiterExtractor customDelimiterExtractor;
-    private final NumberPartExtractor numberPartExtractor;
+    private final CalculatorService calculatorService;
 
     public CalculatorController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.calculator = new Calculator();
-        this.customDelimiterExtractor = new CustomDelimiterExtractor();
-        this.numberPartExtractor = new NumberPartExtractor();
+        this.calculatorService = new CalculatorService();
     }
 
     public void run() {
@@ -39,22 +30,6 @@ public class CalculatorController {
     }
 
     private int processInput(String input) {
-        if (input.isEmpty()) return 0;
-
-        if (hasCustomDelimiter(input)) {
-            String delimiters = customDelimiterExtractor.extractCustomDelimiter(input) + DEFAULT_DELIMITER;
-            String numbersStringPart = numberPartExtractor.extractNumbersPart(input);
-            String[] tokens = numbersStringPart.split("[" + delimiters + "]");
-
-            return calculator.calculate(tokens);
-        }
-
-        String[] tokens = input.split("[" + DEFAULT_DELIMITER + "]");
-
-        return calculator.calculate(tokens);
-    }
-
-    private boolean hasCustomDelimiter(String token) {
-        return token.startsWith(CUSTOM_PREFIX);
+        return calculatorService.process(input);
     }
 }
