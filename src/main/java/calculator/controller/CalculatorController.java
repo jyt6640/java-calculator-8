@@ -2,17 +2,17 @@ package calculator.controller;
 
 import calculator.view.InputView;
 import calculator.view.OutputView;
-import calculator.domain.StringCalculator;
+import calculator.domain.Calculator;
 
 public class CalculatorController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final StringCalculator calculator;
+    private final Calculator calculator;
 
     public CalculatorController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.calculator = new StringCalculator();
+        this.calculator = new Calculator();
     }
 
     public void run() {

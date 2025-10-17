@@ -5,7 +5,7 @@ public class OutputView {
         System.out.println("결과 : " + result);
     }
 
-    public void printError(String message) {
-        System.out.println("[ERROR] : " + message);
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

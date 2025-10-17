@@ -1,10 +1,13 @@
 package calculator.domain;
 
+import static calculator.constant.Patterns.CUSTOM_DELIMITER;
+
+import calculator.constant.ErrorMessage;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DelimiiterParser {
-    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("^//(.+?)\\\\n");
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER);
 
     public String extractCustomDelimiter(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
@@ -12,14 +15,14 @@ public class DelimiiterParser {
             String delimiter = matcher.group(1);
 
             if (delimiter.isEmpty()) {
-                throw new IllegalArgumentException("커스텀 구분자가 비어있습니다.");
+                throw new IllegalArgumentException(ErrorMessage.EMPTY_CUSTOM_DELIMITER.getMessage());
             }
 
             return delimiter;
         }
 
         //개행 문자 누락
-        throw new IllegalArgumentException("커스텀 구분자 형식이 올바르지 않습니다.");
+        throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
     }
 
     public String extractNumbersPart(String input) {
@@ -28,6 +31,6 @@ public class DelimiiterParser {
             return input.substring(matcher.end());
         }
 
-        throw new IllegalArgumentException("커스텀 구분자 형식이 올바르지 않습니다.");
+        throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
     }
 }

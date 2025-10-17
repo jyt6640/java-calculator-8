@@ -1,22 +1,25 @@
 package calculator.domain;
 
-public class StringCalculator {
+import static calculator.constant.Delimiter.CUSTOM_PREFIX;
+import static calculator.constant.Delimiter.DEFAULT_DELIMITER;
+
+public class Calculator {
     private final DelimiiterParser delimiterParser = new DelimiiterParser();
     private final NumberValidator numberValidator = new NumberValidator();
 
     public int calculate(String input) {
         if (input.isEmpty()) return 0;
 
-        String delimiters = ",:";
+        String customDelimiters = "";
         String numbersPart = input;
 
-        if (input.startsWith("//")) {
+        if (input.startsWith(CUSTOM_PREFIX)) {
             String customDelimiter = delimiterParser.extractCustomDelimiter(input);
             numbersPart = delimiterParser.extractNumbersPart(input);
-            delimiters += customDelimiter;
+            customDelimiters += customDelimiter;
         }
 
-        String[] tokens = numbersPart.split("[" + delimiters + "]");
+        String[] tokens = numbersPart.split("[" + DEFAULT_DELIMITER + customDelimiters + "]");
 
         int sum = 0;
         for (String token : tokens) {
