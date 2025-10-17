@@ -14,14 +14,11 @@ public class CustomDelimiterValidator {
         return input.startsWith(CUSTOM_PREFIX);
     }
 
-    public void validateCustomDelimiterFormat(String input) {
-        if (!hasCustomDelimiter(input)) {
-            return;
-        }
-
+    public boolean validateCustomDelimiterFormat(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if(!matcher.find()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
         }
+        return true;
     }
 }

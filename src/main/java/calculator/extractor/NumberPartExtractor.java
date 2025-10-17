@@ -11,11 +11,7 @@ public class NumberPartExtractor {
 
     public String extractNumbersPart(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
-        if (matcher.find()) {
-            return input.substring(matcher.end());
-        }
-
-        throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
+        return input.substring(matcher.end());
     }
 
     public String emptyNumberInput(String input) {

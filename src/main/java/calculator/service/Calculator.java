@@ -1,10 +1,10 @@
 package calculator.service;
 
-import calculator.validator.NumberValidator;
+import calculator.validator.NumberPartValidator;
 
 public class Calculator {
 
-    private final NumberValidator numberValidator = new NumberValidator();
+    private final NumberPartValidator numberPartValidator = new NumberPartValidator();
 
     public int calculate(String[] tokens) {
         int sum = 0;
@@ -12,7 +12,7 @@ public class Calculator {
             if (token.isEmpty()) {
                 continue;
             }
-            int number = numberValidator.parseAndValidateNumber(token);
+            int number = numberPartValidator.parseAndValidateNumber(token);
 
             sum += number;
         }
