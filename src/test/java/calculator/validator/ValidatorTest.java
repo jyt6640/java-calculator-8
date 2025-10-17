@@ -24,7 +24,7 @@ public class ValidatorTest {
         String input = "//\n1;2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> customDelimiterValidator.emptyCustomValidate(input));
+        assertThrows(IllegalArgumentException.class, () -> customDelimiterValidator.emptyCustomDelimiterValidate(input));
     }
 
     @DisplayName("커스텀 구분자 형식 예외 발생")
@@ -44,7 +44,7 @@ public class ValidatorTest {
         String input = "//;1;2;3";
 
         //when
-        customDelimiterValidator.hasCustomDelimiter(input);
+        customDelimiterValidator.startCustomDelimiterPrefix(input);
 
         //then
         assertTrue(true);
@@ -68,5 +68,25 @@ public class ValidatorTest {
 
         //when&then
         assertThrows(IllegalArgumentException.class, () -> numberPartValidator.containsNonDigit(input));
+    }
+
+    @DisplayName("커스텀 구분자 형식 선언 없이 커스텀 구분자 사용 시 예외 발생")
+    @Test
+    void 커스텀_구분자_형식_선언_없이_커스텀_구분자_사용_시_예외_발생() {
+        //given
+        String input = "1,2;3";
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> numberPartValidator.validateWithoutCustomDelimiter(input));
+    }
+
+    @DisplayName("커스텀 구분자 형식 선언 후 선언하지 않은 커스텀 구분자 사용 시 예외 발생")
+    @Test
+    void 커스텀_구분자_형식_선언_후_선언하지_않은_커스텀_구분자_사용_시_예외_발생() {
+        //given
+        String input = "//#\n1#2;3";
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> numberPartValidator.validateWithCustomDelimiter(input));
     }
 }
