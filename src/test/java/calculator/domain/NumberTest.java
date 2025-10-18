@@ -26,8 +26,21 @@ public class NumberTest {
         //given
         String input = "-1";
 
-        ////when&then
+        //when&then
         assertThrows(IllegalArgumentException.class, () -> new Number(input));
+    }
+
+    @DisplayName("빈 입력값 0 반환")
+    @Test
+    void 빈_입력값_0_반환() {
+        //given
+        String input = "";
+
+        //when
+        Number number = new Number(input);
+
+        //then
+        assertEquals(0, number.getValue());
     }
 
 }
