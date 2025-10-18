@@ -11,16 +11,6 @@ import java.util.regex.Pattern;
 public class NumberPartValidator {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile(CUSTOM_DELIMITER);
 
-    public void hasNegativeNumberValidate(String[] tokens) {
-        for (String token : tokens) {
-            int number = Integer.parseInt(token);
-
-            if (number < 0) {
-                throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER.getMessage());
-            }
-        }
-    }
-
     public void containsNonDigit(String[] tokens) {
         for (String token : tokens) {
             if (!token.matches(ONLY_NUMBER)) {
