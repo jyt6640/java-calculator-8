@@ -13,6 +13,7 @@ public class InputValidator {
 
     public boolean hasCustomDelimiterPrefix(String input) { return input.startsWith(CUSTOM_PREFIX); }
 
+    // 커스텀 구분자 형식 검증 및 커스텀 구분자 유무 여부 검증
     public void validateCustomDelimiterFormat(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if(!matcher.find()) {
@@ -24,12 +25,14 @@ public class InputValidator {
         }
     }
 
+    //기본 구분자로만 추출 가능한 문자열 인지 검증
     public void validateBasicDelimiterInput(String input) {
         if(input.matches(INVALID_CHAR_PATTERN)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DELIMITER_USAGE.getMessage());
         }
     }
 
+    //기본 구분자 및 커스텀 구분자로 추출 가능한 문자열인지 검증
     public void validateCustomDelimiterInput(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (!matcher.find()) {
