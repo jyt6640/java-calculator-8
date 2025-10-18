@@ -13,8 +13,6 @@ public class Number {
         this.value = Integer.parseInt(token);
 
         validateNegative(this.value);
-
-
     }
 
     private void validateNegative(int number) {
@@ -30,7 +28,7 @@ public class Number {
         return token;
     }
 
-    public int getValue() {
-        return value;
+    public int addTo(int sum) {
+        return sum + this.value;
     }
 }

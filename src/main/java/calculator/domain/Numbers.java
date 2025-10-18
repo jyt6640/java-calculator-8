@@ -19,8 +19,10 @@ public class Numbers {
     }
 
     public int sum() {
-        return values.stream()
-                .mapToInt(Number::getValue)
-                .sum();
+        int sum = 0;
+        for (Number number : values) {
+            sum += number.addTo(sum);
+        }
+        return sum;
     }
 }
