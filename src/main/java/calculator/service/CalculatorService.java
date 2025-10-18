@@ -1,22 +1,18 @@
 package calculator.service;
 
-import static calculator.constant.Delimiter.DEFAULT_DELIMITER;
-
+import calculator.domain.Delimiters;
 import calculator.domain.Numbers;
-import calculator.extractor.CustomDelimiterExtractor;
-import calculator.extractor.NumberPartExtractor;
+import calculator.parser.InputParser;
 import calculator.validator.CustomDelimiterValidator;
 import calculator.validator.NumberPartValidator;
 
 public class CalculatorService {
-    private final CustomDelimiterExtractor customDelimiterExtractor;
-    private final NumberPartExtractor numberPartExtractor;
+    private final InputParser inputParser;
     private final CustomDelimiterValidator customDelimiterValidator;
     private final NumberPartValidator numberPartValidator;
 
     public CalculatorService() {
-        this.customDelimiterExtractor = new CustomDelimiterExtractor();
-        this.numberPartExtractor = new NumberPartExtractor();
+        this.inputParser = new InputParser();
         this.customDelimiterValidator = new CustomDelimiterValidator();
         this.numberPartValidator = new NumberPartValidator();
     }
@@ -37,13 +33,13 @@ public class CalculatorService {
         customDelimiterValidator.validateCustomDelimiterFormat(input);
         customDelimiterValidator.emptyCustomDelimiterValidate(input);
 
-        String customDelimiter = customDelimiterExtractor.extractCustomDelimiter(input);
-        String numberPart = numberPartExtractor.extractNumbersPart(input);
+        String customDelimiter = inputParser.extractCustomDelimiter(input);
+        String numberPart = inputParser.extractNumbersPart(input);
 
         numberPartValidator.validateWithCustomDelimiter(input);
 
-        String delimiters = DEFAULT_DELIMITER + customDelimiter;
-        String[] tokens = numberPart.split("[" + delimiters + "]");
+        Delimiters delimiters = new Delimiters(customDelimiter);
+        String[] tokens = delimiters.split(numberPart);
 
         Numbers numbers = Numbers.from(tokens);
         return numbers.sum();
@@ -52,7 +48,8 @@ public class CalculatorService {
     private int processWithBasicDelimiter(String input) {
         numberPartValidator.validateWithoutCustomDelimiter(input);
 
-        String[] tokens =  input.split("[" + DEFAULT_DELIMITER + "]");
+        Delimiters delimiters = new Delimiters(null);
+        String[] tokens = delimiters.split(input);
 
         Numbers numbers = Numbers.from(tokens);
         return numbers.sum();
