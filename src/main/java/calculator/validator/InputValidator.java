@@ -27,14 +27,6 @@ public class InputValidator {
         }
     }
 
-    public void containsNonDigit(String[] tokens) {
-        for (String token : tokens) {
-            if (!token.matches(ONLY_NUMBER)) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
-            }
-        }
-    }
-
     public void validateWithoutCustomDelimiter(String input) {
         if(input.matches(INVALID_CHAR_PATTERN)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DELIMITER_USAGE.getMessage());

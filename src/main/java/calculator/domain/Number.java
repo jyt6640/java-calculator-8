@@ -10,7 +10,7 @@ public class Number {
 
         token = normalizeEmptyInput(token);
 
-        this.value = Integer.parseInt(token);
+        this.value = parseToInt(token);
 
         validateNegative(this.value);
     }
@@ -26,6 +26,15 @@ public class Number {
             return "0";
         }
         return token;
+    }
+
+    private int parseToInt(String token) {
+        try {
+            return Integer.parseInt(token);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
+        }
+
     }
 
     public int addTo(int sum) {
