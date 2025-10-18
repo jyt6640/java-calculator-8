@@ -6,6 +6,8 @@ public class Number {
     private final int value;
 
     public Number(String token) {
+        token = token.trim();
+
         token = normalizeEmptyInput(token);
 
         this.value = Integer.parseInt(token);
