@@ -17,7 +17,20 @@ public class NumberTest {
         Number number = new Number(input);
 
         //then
-        assertEquals(123, number,getValue());
+        assertEquals(123, number.getValue());
+    }
+
+    @DisplayName("음수 입력 예외 발생")
+    @Test
+    void 음수_입력_예외_발생() {
+        //given
+        String input = "-1";
+
+        //when
+        Number number = new Number(input);
+
+        //then
+        assertThrows(IllegalArgumentException.class, () -> new Number(input));
     }
 
 }
