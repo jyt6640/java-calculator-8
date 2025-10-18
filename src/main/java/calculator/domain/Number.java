@@ -8,20 +8,20 @@ public class Number {
     public Number(String token) {
         token = token.trim();
 
-        token = normalizeEmptyInput(token);
+        token = convertEmptyToZero(token);
 
         this.value = parseToInt(token);
 
-        validateNegative(this.value);
+        validateNonNegative(this.value);
     }
 
-    private void validateNegative(int number) {
+    private void validateNonNegative(int number) {
         if (value < 0 ) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER.getMessage());
         }
     }
 
-    private String normalizeEmptyInput(String token) {
+    private String convertEmptyToZero(String token) {
         if (token == null || token.isEmpty()) {
             return "0";
         }

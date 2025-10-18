@@ -14,35 +14,20 @@ public class CalculatorService {
         this.inputValidator = new InputValidator();
     }
 
-    public int process(String input) {
+    public int calculate(String input) {
         input = input.trim();
         if (input.isEmpty()) return 0;
 
-        if(inputValidator.startCustomDelimiterPrefix(input)){
-            return processWithCustomDelimiter(input);
+        if(inputValidator.hasCustomDelimiterPrefix(input)){
+            return calculateWithCustomDelimiter(input);
         }
 
-        return processWithBasicDelimiter(input);
+        return calculateWithBasicDelimiter(input);
 
     }
 
-    private int processWithCustomDelimiter(String input) {
-        inputValidator.validateCustomDelimiterFormat(input);
-
-        String customDelimiter = inputParser.extractCustomDelimiter(input);
-        String numberPart = inputParser.extractNumbersPart(input);
-
-        inputValidator.validateWithCustomDelimiter(input);
-
-        Delimiters delimiters = new Delimiters(customDelimiter);
-        String[] tokens = delimiters.split(numberPart);
-
-        Numbers numbers = Numbers.from(tokens);
-        return numbers.sum();
-    }
-
-    private int processWithBasicDelimiter(String input) {
-        inputValidator.validateWithoutCustomDelimiter(input);
+    private int calculateWithBasicDelimiter(String input) {
+        inputValidator.validateBasicDelimiterInput(input);
 
         Delimiters delimiters = new Delimiters(null);
         String[] tokens = delimiters.split(input);
@@ -51,6 +36,20 @@ public class CalculatorService {
         return numbers.sum();
     }
 
+    private int calculateWithCustomDelimiter(String input) {
+        inputValidator.validateCustomDelimiterFormat(input);
+
+        String customDelimiter = inputParser.extractCustomDelimiter(input);
+        String numberPart = inputParser.extractNumberSection(input);
+
+        inputValidator.validateCustomDelimiterInput(input);
+
+        Delimiters delimiters = new Delimiters(customDelimiter);
+        String[] tokens = delimiters.split(numberPart);
+
+        Numbers numbers = Numbers.from(tokens);
+        return numbers.sum();
+    }
 }
 
 

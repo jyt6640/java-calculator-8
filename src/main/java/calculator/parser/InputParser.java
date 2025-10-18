@@ -16,18 +16,11 @@ public class InputParser {
         return null;
     }
 
-    public String extractNumbersPart(String input) {
+    public String extractNumberSection(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (matcher.find()) {
             return input.substring(matcher.end());
         }
         return null;
-    }
-
-    public String emptyNumberInput(String input) {
-        if (input.isEmpty()) {
-            return "0";
-        }
-        return input;
     }
 }

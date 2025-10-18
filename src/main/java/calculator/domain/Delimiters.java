@@ -11,10 +11,10 @@ public class Delimiters {
     private final Set<String> delimiters;
 
     public Delimiters(String customDelimiter) {
-        this.delimiters = buildDelimiters(customDelimiter);
+        this.delimiters = createDelimiterSet(customDelimiter);
     }
 
-    private Set<String> buildDelimiters(String customDelimiter) {
+    private Set<String> createDelimiterSet(String customDelimiter) {
         Set<String> delimiters = new HashSet<>(Delimiter.DEFAULT_DELIMITER_SET);
 
         if (customDelimiter != null && !customDelimiter.isEmpty()) {
@@ -26,11 +26,11 @@ public class Delimiters {
     }
 
     public String[] split(String input) {
-        String pattern = buildPattern();
+        String pattern = createRegexPattern();
         return input.split(pattern);
     }
 
-    private String buildPattern() {
+    private String createRegexPattern() {
         String quoted = delimiters
                 .stream()
                 .map(Pattern::quote)

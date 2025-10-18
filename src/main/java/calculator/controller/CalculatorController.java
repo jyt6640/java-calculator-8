@@ -28,6 +28,6 @@ public class CalculatorController {
     }
 
     private int processInput(String input) {
-        return calculatorService.process(input);
+        return calculatorService.calculate(input);
     }
 }
