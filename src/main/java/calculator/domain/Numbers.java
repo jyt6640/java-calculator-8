@@ -21,7 +21,7 @@ public class Numbers {
     public int sum() {
         int sum = 0;
         for (Number number : values) {
-            sum += number.addTo(sum);
+            sum = number.addTo(sum);
         }
         return sum;
     }
