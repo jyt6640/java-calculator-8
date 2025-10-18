@@ -61,9 +61,9 @@
 
 #### 집합
 ##### 구분자 집합
-- [ ] 구분자 집합(Set) 정의
-    - [ ] `,` (콤마)
-    - [ ] `:` (콜론)
+- [X] 구분자 집합(Set) 정의
+    - [X] `,` (콤마)
+    - [X] `:` (콜론)
 
 
 - [ ] 커스텀 구분자를 구분자 집합에 추가
@@ -98,13 +98,16 @@
 
 ### ⚠️ 예외 처리 
 
-| 예외 상황                     | 예외 타입 | 예시                 |
-|---------------------------|----------|--------------------|
-| 음수 입력                     | `IllegalArgumentException` | `1,-2,3`           |
-| 숫자가 아닌 값                  | `IllegalArgumentException` | `1,a,3`            |
-| 커스텀 구분자 선언 없이 구분자 사용 | `IllegalArgumentException` | `1,2;3`           |
-| 커스텀 구분자 누락                | `IllegalArgumentException` | `//\n1,2` (구분자 누락) |
-| 개행 표식 누락                  | `IllegalArgumentException` | `//;1;2;3` (\n 누락) |
+| 예외 상황                | 예외 타입 | 예시                 |
+|----------------------|----------|--------------------|
+| 음수 입력                | `IllegalArgumentException` | `1,-2,3`           |
+| 숫자가 아닌 값             | `IllegalArgumentException` | `1,a,3`            |
+| 커스텀 구분자 선언 없이 구분자 사용 | `IllegalArgumentException` | `1,2;3`            |
+| 커스텀 구분자 누락           | `IllegalArgumentException` | `//\n1,2` (구분자 누락) |
+| 커스텀 구분자 형식 오류        | `IllegalArgumentException` | `//;1;2;3` (\n 누락) |
+| 음수 기호 커스텀 구분자 불가     | `IllegalArgumentException` | `//-\n1-2-3`       |
+| 숫자 커스텀 구분자 불가        | `IllegalArgumentException` | `//1\n21213`       |
+
 
 ***
 

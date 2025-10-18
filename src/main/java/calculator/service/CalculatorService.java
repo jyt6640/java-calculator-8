@@ -1,6 +1,5 @@
 package calculator.service;
 
-import static calculator.constant.Delimiter.CUSTOM_PREFIX;
 import static calculator.constant.Delimiter.DEFAULT_DELIMITER;
 
 import calculator.domain.Numbers;
