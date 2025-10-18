@@ -1,6 +1,6 @@
 package calculator.domain;
 
-import org.assertj.core.internal.Numbers;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ public class NumbersTest {
         String[] tokens = {"3","5","7"};
 
         //when
-        Numbers numbers = new Numbers(tokens);
+        Numbers numbers = Numbers.from(tokens);
         int result = numbers.sum();
 
         //then
