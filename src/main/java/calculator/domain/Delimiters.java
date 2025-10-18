@@ -18,14 +18,11 @@ public class Delimiters {
         Set<String> delimiters = new HashSet<>(Delimiter.DEFAULT_DELIMITER_SET);
 
         if (customDelimiter != null && !customDelimiter.isEmpty()) {
+            customDelimiter = customDelimiter.trim();
             delimiters.add(customDelimiter);
         }
 
         return Collections.unmodifiableSet(delimiters);
-    }
-
-    public Set<String> getDelimiters() {
-        return delimiters;
     }
 
     public String[] split(String input) {
@@ -33,8 +30,9 @@ public class Delimiters {
         return input.split(pattern);
     }
 
-    public String buildPattern() {
-        String quoted = delimiters.stream()
+    private String buildPattern() {
+        String quoted = delimiters
+                .stream()
                 .map(Pattern::quote)
                 .collect(Collectors.joining(""));
 
