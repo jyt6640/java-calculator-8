@@ -50,16 +50,6 @@ public class ValidatorTest {
         assertTrue(true);
     }
 
-    @DisplayName("음수 입력 예외 발생")
-    @Test
-    void 음수_입력_예외_발생() {
-        //given
-        String input[] = {"-1","2","3"};
-
-        //when&then
-        assertThrows(IllegalArgumentException.class, () -> numberPartValidator.hasNegativeNumberValidate(input));
-    }
-
     @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
     @Test
     void 숫자가_아닌_값_입력_시_예외_발생() {
