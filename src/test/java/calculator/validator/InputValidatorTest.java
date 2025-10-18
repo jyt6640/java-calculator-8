@@ -22,7 +22,7 @@ public class InputValidatorTest {
         String input = "//\n1;2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> inputValidator.emptyCustomDelimiterValidate(input));
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateCustomDelimiterFormat(input));
     }
 
     @DisplayName("커스텀 구분자 형식 예외 발생")
