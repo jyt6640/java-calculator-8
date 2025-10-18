@@ -15,6 +15,10 @@ public class Delimiters {
     private Set<String> buildDelimiters(String customDelimiter) {
         Set<String> delimiters = new HashSet<>(Delimiter.DEFAULT_DELIMITER_SET);
 
+        if (customDelimiter != null && !customDelimiter.isEmpty()) {
+            delimiters.add(customDelimiter);
+        }
+
         return Collections.unmodifiableSet(delimiters);
     }
 
