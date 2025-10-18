@@ -22,4 +22,20 @@ public class DelimitersTest {
         assertTrue(result.contains(","));
         assertTrue(result.contains(":"));
     }
+
+    @DisplayName("커스텀 구분자 추가")
+    @Test
+    void 커스텀_구분자_추가() {
+        //given
+        Delimiters delimiters = new Delimiters("#");
+
+        //when
+        Set<String> result = delimiters.getDelimiters();
+
+        //then
+        assertEquals(3, result.size());
+        assertTrue(result.contains("#"));
+        assertTrue(result.contains(":"));
+        assertTrue(result.contains(","));
+    }
 }
