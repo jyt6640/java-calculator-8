@@ -26,10 +26,7 @@ public class NumberTest {
         //given
         String input = "-1";
 
-        //when
-        Number number = new Number(input);
-
-        //then
+        ////when&then
         assertThrows(IllegalArgumentException.class, () -> new Number(input));
     }
 
