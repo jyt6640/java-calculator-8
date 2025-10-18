@@ -48,16 +48,6 @@ public class InputValidatorTest {
         assertTrue(true);
     }
 
-    @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
-    @Test
-    void 숫자가_아닌_값_입력_시_예외_발생() {
-        //given
-        String input[] = {"1","a","3"};
-
-        //when&then
-        assertThrows(IllegalArgumentException.class, () -> inputValidator.containsNonDigit(input));
-    }
-
     @DisplayName("커스텀 구분자 형식 선언 없이 커스텀 구분자 사용 시 예외 발생")
     @Test
     void 커스텀_구분자_형식_선언_없이_커스텀_구분자_사용_시_예외_발생() {

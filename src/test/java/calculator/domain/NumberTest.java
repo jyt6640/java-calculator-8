@@ -20,16 +20,6 @@ public class NumberTest {
         assertEquals(123, number.addTo(0));
     }
 
-    @DisplayName("음수 입력 예외 발생")
-    @Test
-    void 음수_입력_예외_발생() {
-        //given
-        String input = "-1";
-
-        //when&then
-        assertThrows(IllegalArgumentException.class, () -> new Number(input));
-    }
-
     @DisplayName("빈 입력값 0 반환")
     @Test
     void 빈_입력값_0_반환() {
@@ -43,4 +33,23 @@ public class NumberTest {
         assertEquals(0, number.addTo(0));
     }
 
+    @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
+    @Test
+    void 숫자가_아닌_값_입력_시_예외_발생() {
+        //given
+        String input = "a";
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> new Number(input));
+    }
+
+    @DisplayName("음수 입력 예외 발생")
+    @Test
+    void 음수_입력_예외_발생() {
+        //given
+        String input = "-1";
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> new Number(input));
+    }
 }
