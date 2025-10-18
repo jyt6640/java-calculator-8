@@ -17,7 +17,7 @@ public class NumberTest {
         Number number = new Number(input);
 
         //then
-        assertEquals(123, number.getValue());
+        assertEquals(123, number.addTo(0));
     }
 
     @DisplayName("음수 입력 예외 발생")
@@ -40,7 +40,7 @@ public class NumberTest {
         Number number = new Number(input);
 
         //then
-        assertEquals(0, number.getValue());
+        assertEquals(0, number.addTo(0));
     }
 
 }
