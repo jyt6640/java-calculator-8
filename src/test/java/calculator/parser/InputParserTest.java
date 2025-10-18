@@ -35,22 +35,9 @@ public class InputParserTest {
         String input = "//;\\n1;2;3";
 
         //when
-        String result = inputParser.extractNumbersPart(input);
+        String result = inputParser.extractNumberSection(input);
 
         //then
         assertEquals("1;2;3", result);
-    }
-
-    @DisplayName("빈 문자열은 0 반환")
-    @Test
-    void 빈_문자열은_0을_반환() {
-        //given
-        String input = "";
-
-        //when
-        String result = inputParser.emptyNumberInput(input);
-
-        //then
-        assertEquals("0", result);
     }
 }

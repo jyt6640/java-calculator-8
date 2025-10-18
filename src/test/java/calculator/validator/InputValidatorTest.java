@@ -42,7 +42,7 @@ public class InputValidatorTest {
         String input = "//;1;2;3";
 
         //when
-        inputValidator.startCustomDelimiterPrefix(input);
+        inputValidator.hasCustomDelimiterPrefix(input);
 
         //then
         assertTrue(true);
@@ -55,7 +55,7 @@ public class InputValidatorTest {
         String input = "1,2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateWithoutCustomDelimiter(input));
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateBasicDelimiterInput(input));
     }
 
     @DisplayName("커스텀 구분자 형식 선언 후 선언하지 않은 커스텀 구분자 사용 시 예외 발생")
@@ -65,6 +65,6 @@ public class InputValidatorTest {
         String input = "//#\n1#2;3";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateWithCustomDelimiter(input));
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateCustomDelimiterInput(input));
     }
 }

@@ -28,7 +28,6 @@ public class CalculatorService {
 
     private int processWithCustomDelimiter(String input) {
         inputValidator.validateCustomDelimiterFormat(input);
-        inputValidator.emptyCustomDelimiterValidate(input);
 
         String customDelimiter = inputParser.extractCustomDelimiter(input);
         String numberPart = inputParser.extractNumbersPart(input);

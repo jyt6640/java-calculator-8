@@ -3,7 +3,6 @@ package calculator.validator;
 import static calculator.constant.Delimiter.CUSTOM_PREFIX;
 import static calculator.constant.Patterns.CUSTOM_DELIMITER;
 import static calculator.constant.Patterns.INVALID_CHAR_PATTERN;
-import static calculator.constant.Patterns.ONLY_NUMBER;
 
 import calculator.constant.ErrorMessage;
 import java.util.regex.Matcher;
