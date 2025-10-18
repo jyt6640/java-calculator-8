@@ -1,5 +1,6 @@
 package calculator.domain;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -50,5 +51,19 @@ public class DelimitersTest {
 
         //then
         assertEquals(2, result.size());
+    }
+
+    @DisplayName("기본 구분자로 문자열 분리")
+    @Test
+    void 기본_구분자로_문자열_분리() {
+        //given
+        Delimiters delimiters = new Delimiters(null);
+        String input = "1:2,3";
+
+        //when
+        String[] result = delimiters.split(input);
+
+        //then
+        assertArrayEquals(new String[]{"1","2","3"}, result);
     }
 }
