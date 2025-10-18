@@ -66,4 +66,18 @@ public class DelimitersTest {
         //then
         assertArrayEquals(new String[]{"1","2","3"}, result);
     }
+
+    @DisplayName("커스텀 구분자로 문자열 분리")
+    @Test
+    void 커스텀_구분자로_문자열_분리() {
+        //given
+        Delimiters delimiters = new Delimiters("#");
+        String input = "1#2,3";
+
+        //when
+        String[] result = delimiters.split(input);
+
+        //then
+        assertArrayEquals(new String[]{"1","2","3"}, result);
+    }
 }
