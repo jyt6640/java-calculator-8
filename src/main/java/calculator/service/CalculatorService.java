@@ -3,25 +3,22 @@ package calculator.service;
 import calculator.domain.Delimiters;
 import calculator.domain.Numbers;
 import calculator.parser.InputParser;
-import calculator.validator.CustomDelimiterValidator;
-import calculator.validator.NumberPartValidator;
+import calculator.validator.InputValidator;
 
 public class CalculatorService {
     private final InputParser inputParser;
-    private final CustomDelimiterValidator customDelimiterValidator;
-    private final NumberPartValidator numberPartValidator;
+    private final InputValidator inputValidator;
 
     public CalculatorService() {
         this.inputParser = new InputParser();
-        this.customDelimiterValidator = new CustomDelimiterValidator();
-        this.numberPartValidator = new NumberPartValidator();
+        this.inputValidator = new InputValidator();
     }
 
     public int process(String input) {
         input = input.trim();
         if (input.isEmpty()) return 0;
 
-        if(customDelimiterValidator.startCustomDelimiterPrefix(input)){
+        if(inputValidator.startCustomDelimiterPrefix(input)){
             return processWithCustomDelimiter(input);
         }
 
@@ -30,13 +27,13 @@ public class CalculatorService {
     }
 
     private int processWithCustomDelimiter(String input) {
-        customDelimiterValidator.validateCustomDelimiterFormat(input);
-        customDelimiterValidator.emptyCustomDelimiterValidate(input);
+        inputValidator.validateCustomDelimiterFormat(input);
+        inputValidator.emptyCustomDelimiterValidate(input);
 
         String customDelimiter = inputParser.extractCustomDelimiter(input);
         String numberPart = inputParser.extractNumbersPart(input);
 
-        numberPartValidator.validateWithCustomDelimiter(input);
+        inputValidator.validateWithCustomDelimiter(input);
 
         Delimiters delimiters = new Delimiters(customDelimiter);
         String[] tokens = delimiters.split(numberPart);
@@ -46,7 +43,7 @@ public class CalculatorService {
     }
 
     private int processWithBasicDelimiter(String input) {
-        numberPartValidator.validateWithoutCustomDelimiter(input);
+        inputValidator.validateWithoutCustomDelimiter(input);
 
         Delimiters delimiters = new Delimiters(null);
         String[] tokens = delimiters.split(input);
