@@ -38,4 +38,17 @@ public class DelimitersTest {
         assertTrue(result.contains(":"));
         assertTrue(result.contains(","));
     }
+
+    @DisplayName("중복 구분자 제거")
+    @Test
+    void 중복_구분자_제거() {
+        //given
+        Delimiters delimiters = new Delimiters(",");
+
+        //when
+        Set<String> result = delimiters.getDelimiters();
+
+        //then
+        assertEquals(2, result.size());
+    }
 }
