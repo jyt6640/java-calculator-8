@@ -80,4 +80,18 @@ public class DelimitersTest {
         //then
         assertArrayEquals(new String[]{"1","2","3"}, result);
     }
+
+    @DisplayName("구분자 사이의 공백 빈 문자열로 반환")
+    @Test
+    void 구분자_사이의_공백_빈_문자열로_반환() {
+        //given
+        Delimiters delimiters = new Delimiters(null);
+        String input = "1,,3";
+
+        //when
+        String[] result = delimiters.split(input);
+
+        //then
+        assertArrayEquals(new String[]{"1","","3"}, result);
+    }
 }
