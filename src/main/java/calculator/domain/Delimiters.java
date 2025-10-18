@@ -4,6 +4,8 @@ import calculator.constant.Delimiter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Delimiters {
     private final Set<String> delimiters;
@@ -24,5 +26,18 @@ public class Delimiters {
 
     public Set<String> getDelimiters() {
         return delimiters;
+    }
+
+    public String[] split(String input) {
+        String pattern = buildPattern();
+        return input.split(pattern);
+    }
+
+    public String buildPattern() {
+        String quoted = delimiters.stream()
+                .map(Pattern::quote)
+                .collect(Collectors.joining(""));
+
+        return "[" + quoted + "]";
     }
 }
