@@ -35,6 +35,16 @@ public class InputValidatorTest {
         assertThrows(IllegalArgumentException.class, () -> inputValidator.validateNotMinusSign(input));
     }
 
+    @DisplayName("숫자 커스텀 구분자 예외 발생")
+    @Test
+    void 숫자_커스텀_구분자_예외_발생() {
+        //given
+        String input = "4";
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateDelimiterNotNumber(input));
+    }
+
     @DisplayName("커스텀 구분자 형식 예외 발생")
     @Test
     void 커스텀_구분자_형식_예외_발생() {
