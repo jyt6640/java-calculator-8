@@ -32,7 +32,24 @@ public class Number {
         try {
             return Integer.parseInt(token);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
+            handleParseError(token);
+            return 0;
+        }
+    }
+
+    private void handleParseError(String token) {
+        if(isOutOfRange(token)) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
+        }
+        throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
+    }
+
+    private boolean isOutOfRange(String token) {
+        try {
+            long value = Long.parseLong(token);
+            return value < Integer.MIN_VALUE || value > Integer.MAX_VALUE;
+        } catch (NumberFormatException e) {
+            return false;
         }
 
     }
