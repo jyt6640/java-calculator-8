@@ -1,5 +1,6 @@
 package calculator.domain;
 
+import calculator.constant.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,10 +20,18 @@ public class Numbers {
     }
 
     public int sum() {
-        int sum = 0;
+        long sum = 0;
         for (Number number : values) {
-            sum = number.addTo(sum);
+            sum += number.addTo(0);
+
+            validateSumRange(sum);
         }
-        return sum;
+        return (int) sum;
+    }
+
+    private void validateSumRange(long sum) {
+        if (sum > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
+        }
     }
 }
