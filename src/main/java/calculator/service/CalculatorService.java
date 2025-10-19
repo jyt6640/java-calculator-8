@@ -40,6 +40,9 @@ public class CalculatorService {
         inputValidator.validateCustomDelimiterFormat(input);
 
         String customDelimiter = inputParser.extractCustomDelimiter(input);
+
+        inputValidator.validateNotMinusSign(customDelimiter);
+
         String numberPart = inputParser.extractNumberSection(input);
 
         inputValidator.validateCustomDelimiterInput(input);

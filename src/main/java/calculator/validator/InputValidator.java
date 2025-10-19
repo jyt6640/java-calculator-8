@@ -1,6 +1,7 @@
 package calculator.validator;
 
 import static calculator.constant.Delimiter.CUSTOM_PREFIX;
+import static calculator.constant.Delimiter.MINUS_SIGN;
 import static calculator.constant.Patterns.CUSTOM_DELIMITER;
 import static calculator.constant.Patterns.INVALID_CHAR_PATTERN;
 
@@ -13,7 +14,7 @@ public class InputValidator {
 
     public boolean hasCustomDelimiterPrefix(String input) { return input.startsWith(CUSTOM_PREFIX); }
 
-    // 커스텀 구분자 형식 검증 및 커스텀 구분자 유무 여부 검증
+    //커스텀 구분자 형식 검증 및 커스텀 구분자 유무 여부 검증
     public void validateCustomDelimiterFormat(String input) {
         Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if(!matcher.find()) {
@@ -22,6 +23,13 @@ public class InputValidator {
         String delimiter = matcher.group(1);
         if (delimiter == null || delimiter.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_CUSTOM_DELIMITER.getMessage());
+        }
+    }
+
+    //커스텀 구분자가 (-)기호인지 확인
+    public void validateNotMinusSign(String input) {
+        if (MINUS_SIGN.equals(input)) {
+            throw new IllegalArgumentException(ErrorMessage.MINUS_SIGN_NOT_ALLOWED.getMessage());
         }
     }
 
