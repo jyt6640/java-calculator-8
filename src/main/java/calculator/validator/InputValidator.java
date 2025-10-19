@@ -62,7 +62,7 @@ public class InputValidator {
             return;
         }
 
-        String allowedPattern = "^[0-9,:" + Pattern.quote(customDelimiter) + "\\n]+$";
+        String allowedPattern = "^[0-9a-zA-Z-,:" + Pattern.quote(customDelimiter) + "\\n\\s]+$";
         if (!numbersPart.matches(allowedPattern)) {
             throw new IllegalArgumentException(ErrorMessage.DELIMITER_PARSE_FAILED.getMessage());
         }
