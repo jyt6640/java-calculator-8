@@ -25,6 +25,16 @@ public class InputValidatorTest {
         assertThrows(IllegalArgumentException.class, () -> inputValidator.validateCustomDelimiterFormat(input));
     }
 
+    @DisplayName("(-)음수 기호 커스텀 구분자 예외 발생")
+    @Test
+    void 음수_기호_커스텀_구분자_예외_발생() {
+        //given
+        String input = "//-\n1-2-3";
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateNotMinusSign(input));
+    }
+
     @DisplayName("커스텀 구분자 형식 예외 발생")
     @Test
     void 커스텀_구분자_형식_예외_발생() {
