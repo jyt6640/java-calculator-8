@@ -4,6 +4,7 @@ import static calculator.constant.Delimiter.CUSTOM_PREFIX;
 import static calculator.constant.Delimiter.MINUS_SIGN;
 import static calculator.constant.Patterns.CUSTOM_DELIMITER;
 import static calculator.constant.Patterns.INVALID_CHAR_PATTERN;
+import static calculator.constant.Patterns.ONLY_NUMBER;
 
 import calculator.constant.ErrorMessage;
 import java.util.regex.Matcher;
@@ -30,6 +31,13 @@ public class InputValidator {
     public void validateNotMinusSign(String input) {
         if (MINUS_SIGN.equals(input)) {
             throw new IllegalArgumentException(ErrorMessage.MINUS_SIGN_NOT_ALLOWED.getMessage());
+        }
+    }
+
+    //커스텀 구분자가 숫자인지 확인
+    public void validateDelimiterNotNumber(String input) {
+        if (input.matches(ONLY_NUMBER)) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_NOT_ALLOWED.getMessage());
         }
     }
 
