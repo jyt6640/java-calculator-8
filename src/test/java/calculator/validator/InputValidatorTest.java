@@ -29,7 +29,7 @@ public class InputValidatorTest {
     @Test
     void 음수_기호_커스텀_구분자_예외_발생() {
         //given
-        String input = "//-\n1-2-3";
+        String input = "-";
 
         //when&then
         assertThrows(IllegalArgumentException.class, () -> inputValidator.validateNotMinusSign(input));
