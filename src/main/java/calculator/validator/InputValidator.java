@@ -22,7 +22,7 @@ public class InputValidator {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
         }
         String delimiter = matcher.group(1);
-        if (delimiter == null || delimiter.isEmpty()) {
+        if (delimiter == null || delimiter.trim().isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_CUSTOM_DELIMITER.getMessage());
         }
     }
@@ -36,7 +36,7 @@ public class InputValidator {
 
     //커스텀 구분자가 숫자인지 확인
     public void validateDelimiterNotNumber(String input) {
-        if (input.matches(ONLY_NUMBER)) {
+        if (input.trim().matches(ONLY_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_NOT_ALLOWED.getMessage());
         }
     }
@@ -44,7 +44,7 @@ public class InputValidator {
     //기본 구분자로만 추출 가능한 문자열 인지 검증
     public void validateBasicDelimiterInput(String input) {
         if(input.matches(INVALID_CHAR_PATTERN)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DELIMITER_USAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DELIMITER_PARSE_FAILED.getMessage());
         }
     }
 
@@ -54,11 +54,17 @@ public class InputValidator {
         if (!matcher.find()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CUSTOM_DELIMITER_FORMAT.getMessage());
         }
+
         String customDelimiter = matcher.group(1);
         String numbersPart = input.substring(matcher.end());
+
+        if (numbersPart.isEmpty()) {
+            return;
+        }
+
         String allowedPattern = "^[0-9,:" + Pattern.quote(customDelimiter) + "\\n]+$";
         if (!numbersPart.matches(allowedPattern)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DELIMITER_USAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DELIMITER_PARSE_FAILED.getMessage());
         }
     }
 }

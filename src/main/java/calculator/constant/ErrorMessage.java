@@ -6,6 +6,7 @@ public enum ErrorMessage {
     EMPTY_CUSTOM_DELIMITER("커스텀 구분자가 비어있습니다."),
     INVALID_CUSTOM_DELIMITER_FORMAT("커스텀 구분자 형식이 올바르지 않습니다."),
     INVALID_DELIMITER_USAGE("선언된 구분자 이외의 구분자가 입력되었습니다."),
+    DELIMITER_PARSE_FAILED("입력 문자열을 구분자 기준으로 분리할 수 없습니다."),
     MINUS_SIGN_NOT_ALLOWED("(-)기호는 커스텀 구분자로 허용되지 않습니다."),
     NUMBER_NOT_ALLOWED("숫자는 커스텀 구분자로 허용되지 않습니다."),
     OUT_OF_RANGE("int 값을 넘는 범위는 허용되지 않습니다.");
