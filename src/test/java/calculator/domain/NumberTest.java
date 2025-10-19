@@ -43,6 +43,16 @@ public class NumberTest {
         assertThrows(IllegalArgumentException.class, () -> new Number(input));
     }
 
+    @DisplayName("int 범위가 넘는 값 입력 시 예외 발생")
+    @Test
+    void int_범위가_넘는_값_입력_시_예외_발생() {
+        //given
+        String input = "2147483648";
+
+        //when&then
+        assertThrows(IllegalArgumentException.class, () -> new Number(input));
+    }
+
     @DisplayName("음수 입력 예외 발생")
     @Test
     void 음수_입력_예외_발생() {
