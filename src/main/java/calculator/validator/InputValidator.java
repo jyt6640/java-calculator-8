@@ -28,7 +28,7 @@ public class InputValidator {
     }
 
     //커스텀 구분자가 (-)기호인지 확인
-    public void validateNotMinusSign(String input) {
+    public void validateDelimiterNotMinusSign(String input) {
         if (MINUS_SIGN.equals(input)) {
             throw new IllegalArgumentException(ErrorMessage.MINUS_SIGN_NOT_ALLOWED.getMessage());
         }

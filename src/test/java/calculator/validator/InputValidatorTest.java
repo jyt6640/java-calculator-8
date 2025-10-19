@@ -32,7 +32,7 @@ public class InputValidatorTest {
         String input = "-";
 
         //when&then
-        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateNotMinusSign(input));
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.validateDelimiterNotMinusSign(input));
     }
 
     @DisplayName("숫자 커스텀 구분자 예외 발생")
