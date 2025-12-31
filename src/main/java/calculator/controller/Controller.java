@@ -1,15 +1,21 @@
 package calculator.controller;
 
-import calculator.view.InputView;
+import calculator.view.handler.InputHandler;
 
 public class Controller {
-    private final InputView inputView;
+    private final InputHandler inputHandler;
 
-    public Controller(InputView inputView) {
-        this.inputView = inputView;
+    public Controller(InputHandler inputHandler) {
+        this.inputHandler = inputHandler;
     }
 
     public void run() {
-        inputView.readNumber();
+        String input = inputHandler.getNumber();
+        if (inputHandler.hasCustomDelimiter(input)) {
+            String numberSection = inputHandler.getCustomNumberSection(input);
+            String customDelimiter = inputHandler.customDelimiterParser(input);
+        }
+
+
     }
 }
