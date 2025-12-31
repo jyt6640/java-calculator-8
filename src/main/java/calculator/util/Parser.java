@@ -13,7 +13,6 @@ public class Parser {
         List<Integer> numbers = Arrays.stream(numberSection.split(PREFIX + BASIC_DELIMITER + SUFFIX))
                 .map(this::inputToInt)
                 .collect(Collectors.toList());
-        System.out.println("numbers: " + numbers);
         return numbers;
     }
 

@@ -26,11 +26,11 @@ public class InputHandler {
     }
 
     public String getCustomNumberSection(String input) {
-        Matcher matcher = CUSTOM_DELIMITER_PATTERN.matcher(input);
-        if (matcher.find()) {
-            return matcher.replaceAll("\n");
+        int newlineIndex = input.indexOf("\\n");
+        if (newlineIndex != -1) {
+            return input.substring(newlineIndex + 2);
         }
-        return null;
+        return input;
     }
 
     public String customDelimiterParser(String input) {
